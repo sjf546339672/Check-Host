@@ -1,7 +1,10 @@
 # coding: utf-8
 import json
+import socket
 from urllib.parse import urlencode
 from urllib.request import urlopen
+
+import os
 import requests
 from requests import Request
 
@@ -61,7 +64,7 @@ def get_alert_number(alert_id):
 def get_reource_type(res_id):
     base_url = "http://devops.uyunsoft.cn/store/openapi/v2/resources/get?"
     data = {
-        "apikey": "e10adc3949ba59abbe56e057f2gg88dd",
+        "apikey": "a6b367e9c5724b8c98a60ffa1572b563",
         "id":  res_id,
     }
     request_data = urlencode(data)
@@ -72,19 +75,55 @@ def get_reource_type(res_id):
     response = requests.get(url, headers=headers)
     try:
         resource_name = response.json()["className"]  # 查询资源类型名称
-        return resource_name
+        resource_ip = response.json()["ip"]
+        resource_class_code = response.json()["classCode"]
+        return resource_name, resource_ip, resource_class_code
     except Exception as e:
         print(e)
+
+
+def ping_ip(ip_addr):
+    result = os.popen('ping -n 1 ' + ip_addr, 'r')
+    shuchu = result.read()
+    result.close()
+    if not shuchu.count('请求超时'):
+        return True
+    else:
+        return False
+
+
+def check_prot(ip_addr, port):
+    """检测远程端口是否正常"""
+    sk = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sk.settimeout(1)
+    try:
+        sk.connect((ip_addr, port))
+        print('Server port {} OK!'.format(port))
+        return True
+    except Exception:
+        print('Server port {} not connect!'.format(port))
+        return False
 
 
 def main(alert_id, res_id):
     get_number = get_alert_number(alert_id)
     if get_number <= 50:
-        resource_name = get_reource_type(res_id)
+        resource_name = get_reource_type(res_id)[0]
+        resource_ip = get_reource_type(res_id)[1]
+        resource_class_code = get_reource_type(res_id)[3]
         if resource_name == "虚拟机":
-            ip = '10.1.100.12'
+            print("带内", resource_name, resource_ip)
+            ping_result = ping_ip(resource_ip)
+            if ping_result is True:
+                check_prot_result = check_prot(resource_ip, "8080")
+                if check_prot_result is True:
+                    print("采控异常")
+                else:
+                    print("HANG住了")
+            else:
+                pass
         else:
-            ip = '10.1.100.14'
+            print("带外", resource_name, resource_ip)
 
 
 if __name__ == '__main__':
