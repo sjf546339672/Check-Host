@@ -4,7 +4,6 @@ import socket
 import urllib
 
 import os
-from urllib.parse import urlencode
 import requests
 
 
@@ -14,7 +13,7 @@ def start(id, res_id):
         "pageSize": "10",
         "id": id
     }
-    data = urlencode(request_data)
+    data = urllib.urlencode(request_data)
     alert_url = "http://10.1.61.237/alert/openapi/v2/incident/query?"+data
     get_number = get_alert_number(alert_url)
     print(get_number)
@@ -37,7 +36,7 @@ def get_excutor_machine():
         "apikey": "",
         "id": "",
     }
-    request_data = urlencode(data)
+    request_data = urllib.urlencode(data)
     url = base_url+request_data  # 根据ID获取对应的资源对象详情(资源类型名称)
     response = requests.get(url)
     print(response.status_code, response.json())
@@ -74,7 +73,7 @@ def check_impi(res_id):
         "classcode": "PCServer",
         # "_": "1589287313068"
     }
-    request_data = urlencode(data)
+    request_data = urllib.urlencode(data)
     url = base_url + request_data
     print(url)
     headers = {
