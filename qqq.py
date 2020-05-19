@@ -1,41 +1,48 @@
 # coding: utf-8
-# import json
-# from urllib import urlencode
-# from urlparse import urljoin
-# import requests
-#
-# condition = [{"field": "classCode", "operator": "IN", "value": ['VM', 'PCServer', 'MiniServer']}]
-#
+from urllib import urlencode
+
+import requests
+
+# result_ping  result_ssh  result_impi
+
+
+# def test(result_ping, result_ssh, result_impi):
+#     if result_ping is True:
+#         if result_ssh is True:
+#             return "采控代理异常"
+#         else:
+#             return "HANG住了"
+#     else:
+#         if result_impi is True:
+#             return "网络不可达"
+#         else:
+#             return "主机宕机"
+
+# base_url = "http://10.1.5.250/"
+# base_url = "http://10.1.240.109/"
+# url = "store/openapi/v2/datapoints/query_last?"
 # data = {
-#     "apikey": "e10adc3949ba59abbe56e057f20f88dd",
-#     "resource_id": "5ebf917c2350a90cacbbcc9d",
+#     'apikey': 'e10adc3949ba59abbe56e057f2gg88dd',
+#     # 'tag': 'object:5ea146be2290815a80c6ac21'
+#     'tag': 'object:5ebf917d2350a90cacbbcca1'
 # }
-#
-# headers = {"resOwner": None,
-#            "resource_id": "5ebf917c2350a90cacbbcc9d",
-#            "relation_type_code": "RunsOn",
-#            "Content-Type": "application/json"}
-#
-# body = {"pageNum": None,
-#         "pageSize": None,
-#         "needCount": None,
-#         "orderFields": None,
-#         "conditions": None,
-#         "requiredFields": None
-#         }
-#
-# base_url = "http://10.1.240.109/store/openapi/v2/resources/query_related?"
 # request_data = urlencode(data)
-# url = base_url + request_data
-# print(url)
+# whole_url = base_url+url + request_data
+# headers = {'apikey': 'e10adc3949ba59abbe56e057f2gg88dd', 'Content-Type': 'application/json', 'Cache-Control': 'no-cache'}
 #
-# # headers = {
-# #     "Cookie": "token=d4672fd690bafe70fe54d7bc0614c7059790a64067fe4556fce69f78195e8702",
-# #     "Content-Type": "application/json;charset=utf-8",
-# #     "resource_id": "5ebf917c2350a90cacbbcc9d",
-# #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
-# # }
-#
-# response = requests.post(url, headers=headers, data=json.dumps(body))
+# response = requests.get(url=whole_url, headers=headers)
 # print(response.status_code, response.content)
-#
+
+
+def mySqrt(x):
+    """
+    :type x: int
+    :rtype: int
+    """
+    t = 1
+    while t*t <= x:
+        t += 1
+    return t - 1
+
+
+print mySqrt(0)

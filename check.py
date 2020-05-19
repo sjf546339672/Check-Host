@@ -66,28 +66,6 @@ class UyunCheck(object):
         except Exception as e:
             return
 
-    def get_reource_type(self, res_id):
-        data = {
-            "apikey": "e10adc3949ba59abbe56e057f2gg88dd",
-            "id": res_id,
-        }
-        request_data = urlencode(data)
-        url = self.base_url + "store/openapi/v2/resources/get?" + request_data
-        try:
-            response = requests.get(url)
-            json_response = response.json()
-            resource_class_code = json_response["classCode"]
-            print(resource_class_code)
-            # if resource_class_code.lower() == "aix" or resource_class_code.lower() == "hpunix":
-            #     print("带外 ip")
-            #     ip = "10.1.100.14"
-            # else:
-            #     print("带内 ip")
-            #     ip = "10.1.100.213"
-            # return ip
-        except Exception as e:
-            return
-
     def run_cmd(self, cmd):
         p = Popen(cmd, shell=True, stdout=PIPE, stderr=STDOUT, stdin=PIPE, )
         stdout, _ = p.communicate()
@@ -122,20 +100,70 @@ class UyunCheck(object):
         except socket.error as e:
             return
 
+    def get_reource_type(self, res_id):
+        base_url = "http://10.1.240.109/"
+        url = "store/openapi/v2/resources/query_related?"
+
+        data = {"apikey": "e10adc3949ba59abbe56e057f2gg88dd"}
+        request_data = urlencode(data)
+
+        whole_url = base_url + url + request_data
+
+        headers = {'resource_id': res_id, 'Content-Type': 'application/json'}
+        condition = [{"field": "classCode", "operator": "IN", "value": ['VM', 'PCServer', 'MiniServer']}]
+        body = {"conditions": condition}
+
+        response = requests.post(url=whole_url, headers=headers, json=body)
+        content = response.json()
+
+        class_code_result = content["dataList"][0]["classCode"]
+        phy_res_id = content["dataList"][0]["id"]
+        ip = content["dataList"][0]["OS_IP"]
+        if class_code_result == "VM":
+            print("带内")
+        else:
+            print("带外")
+        return ip, phy_res_id
+
     def check_ipmi(self, res_id):
+        """检查主机是否上电"""
+        url = "store/openapi/v2/datapoints/query_last?"
+        m = "ipmi.chassis.power.status"
         data = {
-            # "classcode": "VM",
-            "classcode": "PCServer",
+            'apikey': 'e10adc3949ba59abbe56e057f2gg88dd',
+            'tag': 'object: {}'.format(res_id)
         }
         request_data = urlencode(data)
-        url = self.base_url + "/store/api/v1/metrics/detail/get?" + request_data
-        headers = {
-            "Cookie": "token=d4672fd690bafe70fe54d7bc0614c7059790a64067fe4556fce69f78195e8702;"
-        }
-        response = requests.get(url, headers=headers)
-        print(response.status_code, response.content)
+        whole_url = self.base_url + url + request_data
+        headers = {'apikey': 'e10adc3949ba59abbe56e057f2gg88dd',
+                   'Content-Type': 'application/json',
+                   'Cache-Control': 'no-cache'}
+
+        response = requests.get(url=whole_url, headers=headers)
+        for d in response.json():
+            if d['metric'] == m:
+                if str(d['value']) == "1.0":
+                    return True
+                elif str(d['value']) == "0.0":
+                    return False
+
+    def check_result(self, result_ping, result_ssh, result_impi):
+        """检查结果"""
+        if result_ping is True:
+            if result_ssh is True:
+                return "采控代理异常"
+            else:
+                return "HANG住了"
+        else:
+            if result_impi is True:
+                return "网络不可达"
+            else:
+                return "主机宕机"
 
     def get_result_alert(self, result_ping, result_ssh, result_impi):
+        """创建一个新的告警"""
+        result = self.check_result(result_ping, result_ssh, result_impi)
+        print(result)
         apikey = "9cc4871e46094635a19d26557f9bb7f4"
         data = {
             "apikey": apikey,
@@ -143,27 +171,37 @@ class UyunCheck(object):
         }
         body = {
             "severity": 3,
-            "name": "testalert9",
-            "description": "TestAlert",
+            "name": result,
+            "description": "Alert",
             "entity_name": "10.1.1.1",
-            "entity_addr": "10.1.62.172",
-            "merge_key": "description",
-            "identify_key": "ccid",
-            "properties": [
-                {
-                    "val": "5ea97cac33f3916b64834105",
-                    "code": "ccid",
-                    "name": "CCID"
-                }
-            ]
         }
         request_data = urlencode(data)
         get_url = 'alert/openapi/v2/create?'
         url = self.base_url + get_url + request_data
         try:
-            requests.post(url, data=json.dumps(body))
+            response = requests.post(url, data=json.dumps(body))
+            print(url)
+            print(response.status_code)
+            print(response.content)
         except Exception as e:
             return
+
+    def alert_relate(self):
+        """创建父子告警关联"""
+        alert8 = "ad45bb4d9abe4dae8bf8022bef996c39"
+        alert3 = "652748480d03482fb9048bdf7cfa4296"
+        headers = {
+            "apikey": "e10adc3949ba59abbe56e057f2gg88dd",
+        }
+        body = {
+            "parentId": alert8,
+            "childs": [alert3]
+        }
+        url = "openapi/v2/incident/merge"
+        url = self.base_url + url
+        print(url)
+        response = requests.post(url, json=body, headers=headers)
+        print(response.status_code, response.content)
 
 
 if __name__ == '__main__':
@@ -175,8 +213,12 @@ if __name__ == '__main__':
     # uyun.get_reource_type(res_id)  # 获取资源类型
     # uyun.ping_ip("10.1.100.213")  # ping测试
     # uyun.check_port("10.1.100.213", 22)  # 检查端口
-    # uyun.check_ipmi(res_id)
-    # get_result_alert(111, 111, 111)
+    # uyun.check_ipmi(res_id)  # 检查是否上电
+    # uyun.get_result_alert(False, False, False)  # 创建新的告警创建
+    uyun.alert_relate()  # 建立父子关系
+
+
+
 
 
 

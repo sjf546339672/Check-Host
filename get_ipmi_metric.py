@@ -25,6 +25,10 @@ class UYunApi(object):
             kwargs['params'].update({'apikey': self.apikey})
         else:
             kwargs['params'] = {'apikey': self.apikey}
+        print(headers)
+        print(url)
+        print(kwargs)
+        print(method)
         try:
             resp = requests.request(method, url, headers=headers, timeout=self.timeout, **kwargs)
             if resp.status_code >= 400:
@@ -40,6 +44,24 @@ class UYunApi(object):
     def res_get_by_id(self, res_id):
         params = {'id': res_id}
         return self.fetch('store/openapi/v2/resources/get', params=params)
+
+    # 根据关系查询资源
+    def res_queryRelatedResources(self, resource_id, relation_type_code, conditions=None, requiredFields=None,
+                              orderFields=None, pageNum=None, pageSize=None, needCount=None, res_owner=None):
+        url = urljoin(self.base_url, 'store/openapi/v2/resources/query_related')
+        headers = {"resOwner": res_owner,
+                   "resource_id": resource_id,
+                   "relation_type_code": relation_type_code,
+                   "Content-Type": "application/json"}
+        data = {"pageNum": pageNum,
+                "pageSize": pageSize,
+                "needCount": needCount,
+                "orderFields": orderFields,
+                "conditions": conditions,
+                "requiredFields": requiredFields
+                }
+        # print data
+        return self.fetch(url, 'POST', data=json.dumps(data), headers=headers)
 
     def datapoints_query_last(self, object_ids):
         if isinstance(object_ids, (list, tuple)):
@@ -73,28 +95,34 @@ class UYunApi(object):
 
 if __name__ == '__main__':
     url = "http://10.1.5.250/"
+    # url = "http://10.1.240.109"
     # url = "http://10.1.61.237/"
     apikey = "e10adc3949ba59abbe56e057f2gg88dd"
     uyun = UYunApi(url, apikey)
 
-    res_id = '5e81a3a9547d4e33e00c81c2'
+    # res_id = '5ea7831622908172cd8f625e'
+    # res_id = '5e8d7f7a547d4efbd0247858'
+    res_id = '5ea146be2290815a80c6ac21'
     # res_id = '5e81a3a9547d4e33e00c81c1'
     # res_id = '5df8f5c28ad899599668ed00'
 
-    print uyun.res_get_by_id(res_id)
+    # res_id = "5e85a2d82350a94b818db72e"
+
+    # print uyun.res_get_by_id(res_id)
     # print uyun.datapoints_query_by_res_id(res_id)
 
-    m = 'system.tcp.established'
+    # m = 'system.tcp.established'
     m = 'system.tcp.syn_sent'
-    # m = 'ipmi.chassis.power.status'
+    # m = "ipmi.chassis.power.status"
     datas = uyun.datapoints_query_last(res_id)
-    print datas
+    # print(datas)
     for d in datas:
         if d['metric'] == m:
-            print d
+            print ("=========>>>", m, d['value'], type(d['value']))
     # print uyun.metric_query()
     # print uyun.datapoints_query('system.io.await', {'ip': '10.1.5.76'})
-    print uyun.datapoints_query(m, {'object': res_id})
-
-
-
+    # print uyun.datapoints_query(m, {'object': res_id})
+    #
+    # condition = [{"field": "classCode", "operator": "IN", "value": ['VM', 'PCServer', 'MiniServer']}]
+    # print uyun.res_queryRelatedResources(res_id, 'RunsOn', condition)
+    # print uyun.res_queryRelatedResources(res_id, )
