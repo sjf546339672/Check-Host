@@ -101,6 +101,7 @@ class UyunCheck(object):
             return
 
     def get_reource_type(self, res_id):
+        """获取资源参数"""
         base_url = "http://10.1.240.109/"
         url = "store/openapi/v2/resources/query_related?"
 
@@ -188,20 +189,22 @@ class UyunCheck(object):
 
     def alert_relate(self):
         """创建父子告警关联"""
-        alert8 = "ad45bb4d9abe4dae8bf8022bef996c39"
-        alert3 = "652748480d03482fb9048bdf7cfa4296"
-        headers = {
-            "apikey": "e10adc3949ba59abbe56e057f2gg88dd",
+        # alert13 = "06b7742634d0eea11c3d614ccd676b80"
+        # alert3 = "193fe81c529f4391c9610f548fe765bc"
+        data = {
+             "apikey": "e10adc3949ba59abbe56e057f2gg88dd"
         }
+
         body = {
-            "parentId": alert8,
-            "childs": [alert3]
+            "parentId": "ad45bb4d9abe4dae8bf8022bef996c39",
+            "childs": ["652748480d03482fb9048bdf7cfa4296"]
         }
-        url = "openapi/v2/incident/merge"
-        url = self.base_url + url
+        request_data = urlencode(data)
+        url = "alert/openapi/v2/incident/merge?"
+        url = "http://10.1.240.109/" + url + request_data
         print(url)
-        response = requests.post(url, json=body, headers=headers)
-        print(response.status_code, response.content)
+        response = requests.post(url=url, json=body)
+        print(response.status_code, response.content)  #
 
 
 if __name__ == '__main__':
@@ -209,13 +212,13 @@ if __name__ == '__main__':
     res_id = "5ebf917c2350a90cacbbcc9d"
     uyun = UyunCheck(alert_id, res_id)
     # uyun.create_alert()  # 创建告警
-    # uyun.get_alert_number(alert_id)  # 获取告警数量
+    print uyun.get_alert_number(alert_id)  # 获取告警数量
     # uyun.get_reource_type(res_id)  # 获取资源类型
     # uyun.ping_ip("10.1.100.213")  # ping测试
     # uyun.check_port("10.1.100.213", 22)  # 检查端口
     # uyun.check_ipmi(res_id)  # 检查是否上电
     # uyun.get_result_alert(False, False, False)  # 创建新的告警创建
-    uyun.alert_relate()  # 建立父子关系
+    # uyun.alert_relate()  # 建立父子关系
 
 
 
