@@ -74,8 +74,7 @@ class UyunCheck(object):
     def ping_ip(self, ip_addr, echo_opened=True, echo_closed=False, num=1):
         """ping 测试"""
         is_open = False
-        cmd = 'ping -{} {} {}'.format(
-            'c' if platform.system() in ['Windows', 'Darwin'] else 'n', num,
+        cmd = 'ping -{} {} {}'.format('n' if platform.system() in ['Windows', 'Darwin'] else 'c', num,
             ip_addr)
         code, out = self.run_cmd(cmd)
         if re.search('ttl', out, re.I):

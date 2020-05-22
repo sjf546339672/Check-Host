@@ -60,7 +60,7 @@ def port_check(ip, port):
 def ping(ip_addr, echo_opened=True, echo_closed=False, num=1):
     """ping 测试"""
     is_open = False
-    cmd = 'ping -{} {} {}'.format('c' if platform.system() in ['Windows', 'Darwin'] else 'n', num, ip_addr)
+    cmd = 'ping -{} {} {}'.format('n' if platform.system() in ['Windows', 'Darwin'] else 'c', num, ip_addr)
     code, out = run_cmd(cmd)
     # print out
     if re.search('ttl', out, re.I):
