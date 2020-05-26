@@ -1,4 +1,5 @@
 # coding: utf-8
+import json
 from urllib import urlencode
 
 import requests
@@ -8,8 +9,6 @@ apikey = "e10adc3949ba59abbe56e057f2gg88dd"
 vm_exector_ip = "10.1.100.213"
 pc_exector_ip = "10.1.100.213"
 alert_id = "2c07d6b7127e47769bd4fcd2f6abcdde"
-
-
-
+res_id = "5ecb29c82350a90cacbbcd71"
 
 

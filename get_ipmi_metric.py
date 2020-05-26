@@ -25,10 +25,6 @@ class UYunApi(object):
             kwargs['params'].update({'apikey': self.apikey})
         else:
             kwargs['params'] = {'apikey': self.apikey}
-        print(headers)
-        print(url)
-        print(kwargs)
-        print(method)
         try:
             resp = requests.request(method, url, headers=headers, timeout=self.timeout, **kwargs)
             if resp.status_code >= 400:
@@ -122,7 +118,8 @@ if __name__ == '__main__':
     # print uyun.metric_query()
     # print uyun.datapoints_query('system.io.await', {'ip': '10.1.5.76'})
     # print uyun.datapoints_query(m, {'object': res_id})
-    #
     # condition = [{"field": "classCode", "operator": "IN", "value": ['VM', 'PCServer', 'MiniServer']}]
     # print uyun.res_queryRelatedResources(res_id, 'RunsOn', condition)
     # print uyun.res_queryRelatedResources(res_id, )
+    #
+
