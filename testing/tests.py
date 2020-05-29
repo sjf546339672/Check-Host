@@ -60,10 +60,10 @@ class TestUyunCheck(object):
         get_result = self.uyun_check.check_result(result_ping, result_ssh, result_impi)
         assert get_result == result
 
-    @pytest.mark.parametrize("result_ping, result_ssh, result_impi, ip", [
-        (json.dumps({"10.1.62.106": "true"}), json.dumps({"10.1.62.106": "false"}), "true", "10.1.62.213"),
+    @pytest.mark.parametrize("result_ping, result_ssh, result_impi, ip, ciid", [
+        (json.dumps({"10.1.62.106": "true"}), json.dumps({"10.1.62.106": "false"}), "true", "10.1.62.213", "5ec784562350a90cacbbcd13"),
     ])
-    def test_get_result_alert(self, result_ping, result_ssh, result_impi, ip):
+    def test_get_result_alert(self, result_ping, result_ssh, result_impi, ip, ciid):
         """测试创建一个新的告警"""
-        result = self.uyun_check.get_result_alert(result_ping, result_ssh, result_impi, ip)
+        result = self.uyun_check.get_result_alert(result_ping, result_ssh, result_impi, ip, ciid)
         assert result == 200

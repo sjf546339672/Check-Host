@@ -59,7 +59,7 @@ class UyunCheck(object):
             get_number = data["records"][0]["count"]
             return get_number
         except Exception as e:
-            return
+            return  #
 
     def run_cmd(self, cmd):
         p = Popen(cmd, shell=True, stdout=PIPE, stderr=STDOUT, stdin=PIPE, )
@@ -189,7 +189,7 @@ class UyunCheck(object):
         except Exception as e:
             print(e)
 
-    def get_result_alert(self, result_ping, result_ssh, result_impi, ip):
+    def get_result_alert(self, result_ping, result_ssh, result_impi, ip, ciid):
         """创建一个新的告警"""
         data = {"apikey": self.apikey, "id": self.alert_id}
         request_data = urlencode(data)
@@ -200,7 +200,15 @@ class UyunCheck(object):
 
         result = self.check_result(result_ping, result_ssh, result_impi)
 
-        create_data = {"apikey": self.alert_apikey, "app_key": app_key}
+        create_data = {
+            "apikey": self.alert_apikey,
+            "app_key": app_key,
+            "properties": [
+                {"val": ciid,
+                 "code": "ciid",
+                 "name": result
+                 }]}
+
         create_body = {
             "severity": 3,
             "name": result,
