@@ -12,7 +12,8 @@ class UyunCheck(object):
     def __init__(self, alert_id, res_id):
         self.id = alert_id
         self.res_id = res_id
-        self.base_url = "http://10.1.240.109/"
+        # self.base_url = "http://10.1.240.109/"
+        self.base_url = "https://10.1.40.111:7508/"
         self.apikey = "e10adc3949ba59abbe56e057f2gg88dd"
         self.app_key = "a8g645w6wdb99ovziohny5kf7ocekhbn"
         self.alert_apikey = "9cc4871e46094635a19d26557f9bb7f4"
@@ -228,20 +229,22 @@ class UyunCheck(object):
 
 
 def main():
-    alert_id = "2c07d6b7127e47769bd4fcd2f6abcdde"
-    res_id = "5ecb29c82350a90cacbbcd71"
+    # alert_id = "2c07d6b7127e47769bd4fcd2f6abcdde"
+    alert_id = "5ef0209ad5de2de2e8a10d6e"
+    # res_id = "5ecb29c82350a90cacbbcd71"
+    res_id = "5ef014ad2350a92d2430a302"
     uyun = UyunCheck(alert_id, res_id)
-    # uyun.create_alert()  # 创建告警
-    # uyun.get_alert_number(alert_id)  # 获取告警数量
-    # uyun.get_reource_type(res_id)  # 获取资源类型
-    # uyun.ping_ip("10.1.100.213")  # ping测试
-    # uyun.check_port("10.1.100.213", 22)  # 检查端口
-    # uyun.check_ipmi(res_id)  # 检查是否上电
-    # uyun.get_result_alert(False, False, False)  # 创建新的告警创建
-    # uyun.alert_relate()  # 建立父子关系
+    uyun.create_alert()  # 创建告警
+    uyun.get_alert_number(alert_id)  # 获取告警数量
+    uyun.get_reource_type(res_id)  # 获取资源类型
+    uyun.ping_ip("10.1.100.213")  # ping测试
+    uyun.check_port("10.1.100.213", 22)  # 检查端口
+    uyun.check_ipmi(res_id)  # 检查是否上电
+    uyun.get_result_alert(False, False, False)  # 创建新的告警创建
+    uyun.alert_relate()  # 建立父子关系
 
 
-if __name__ == '__main__':   
+if __name__ == '__main__':
     main()
 
 

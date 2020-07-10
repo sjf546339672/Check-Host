@@ -1,0 +1,1717 @@
+<!DOCTYPE html><html><head><title>资源库 OpenAPI 说明文档</title><meta charset='utf-8'><link href='https://dn-maxiang.qbox.me/res-min/themes/marxico.css' rel='stylesheet'><style>
+
+.note-content  {font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, Song, sans-serif;}
+</style></head><body><div id='preview-contents' class='note-content'>
+                        
+<h2>资源库 OpenAPI 说明文档</h2>
+
+<hr>
+
+<div><div class="toc"><div class="toc">
+<ul>
+<li><a href="#1-业务概念">1. 业务概念</a><ul>
+<li><a href="#11-模型">1.1 模型</a><ul>
+<li><a href="#111-属性">1.1.1 属性</a></li>
+<li><a href="#112-资源类型">1.1.2 资源类型</a></li>
+<li><a href="#113-资源模板">1.1.3 资源模板</a></li>
+<li><a href="#114-关系类型">1.1.4 关系类型</a></li>
+<li><a href="#115-关系定义">1.1.5 关系定义</a></li>
+</ul>
+</li>
+<li><a href="#12-数据">1.2 数据</a><ul>
+<li><a href="#121-资源">1.2.1 资源</a></li>
+<li><a href="#122-关系">1.2.2 关系</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-api说明">2. API说明</a><ul>
+<li><a href="#21-查询模型">2.1 查询模型</a><ul>
+<li><a href="#211-查询资源类型">2.1.1 查询资源类型</a><ul>
+<li><a href="#2111-查询资源类型">2.1.1.1 查询资源类型</a></li>
+<li><a href="#2112-获取类型信息">2.1.1.2 获取类型信息</a></li>
+</ul>
+</li>
+<li><a href="#212-获取类型属性">2.1.2 获取类型属性</a></li>
+<li><a href="#213-查询关系定义">2.1.3 查询关系定义</a></li>
+<li><a href="#214-获取两个资源类型间的关系定义">2.1.4 获取两个资源类型间的关系定义</a></li>
+</ul>
+</li>
+<li><a href="#22-数据读写">2.2 数据读写</a><ul>
+<li><a href="#221-资源写入">2.2.1 资源写入</a><ul>
+<li><a href="#2211-保存单个资源">2.2.1.1 保存单个资源</a></li>
+<li><a href="#2212-保存内联对象">2.2.1.2 保存内联对象</a></li>
+<li><a href="#2213-批量保存资源">2.2.1.3 批量保存资源</a></li>
+</ul>
+</li>
+<li><a href="#222-资源查询">2.2.2 资源查询</a><ul>
+<li><a href="#2221-根据关键属性查询资源">2.2.2.1 根据关键属性查询资源</a></li>
+<li><a href="#2222-根据属性查询资源">2.2.2.2 根据属性查询资源</a></li>
+<li><a href="#2223-根据关系查询资源">2.2.2.3 根据关系查询资源</a></li>
+<li><a href="#2224-根据标签查询资源">2.2.2.4 根据标签查询资源</a></li>
+</ul>
+</li>
+<li><a href="#223-资源标签">2.2.3 资源标签</a><ul>
+<li><a href="#2231-为资源添加标签">2.2.3.1 为资源添加标签</a></li>
+<li><a href="#2232-获取资源的标签">2.2.3.2  获取资源的标签</a></li>
+<li><a href="#2233-设置资源标签">2.2.3.3 设置资源标签</a></li>
+</ul>
+</li>
+<li><a href="#224-关系写入">2.2.4 关系写入</a><ul>
+<li><a href="#2241-保存单条关系">2.2.4.1 保存单条关系</a></li>
+<li><a href="#2242-批量保存关系">2.2.4.2 批量保存关系</a></li>
+<li><a href="#2243-删除关系">2.2.4.3 删除关系</a></li>
+</ul>
+</li>
+<li><a href="#225-关系查询">2.2.5 关系查询</a><ul>
+<li><a href="#2251-查询匹配的关系">2.2.5.1 查询匹配的关系</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-附录">3. 附录</a><ul>
+<li><a href="#31-高级查询">3.1 高级查询</a><ul>
+<li><a href="#311-丰富的查询条件">3.1.1 丰富的查询条件</a><ul>
+<li><a href="#3111-条件格式">3.1.1.1 条件格式</a></li>
+<li><a href="#3112-条件比较符">3.1.1.2 条件比较符</a></li>
+<li><a href="#3113-条件比较值">3.1.1.3 条件比较值</a></li>
+</ul>
+</li>
+<li><a href="#312-灵活的条件组装">3.1.2 灵活的条件组装</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<hr>
+
+<h1 id="1-业务概念">1. 业务概念</h1>
+
+<p>资源可以分为<code>模型</code>和<code>数据</code>两部分，前者是后者的元数据定义。</p>
+
+
+
+<h2 id="11-模型">1.1 模型</h2>
+
+<p>为了规范化数据，引入了<code>模型</code>的概念。</p>
+
+
+
+<h3 id="111-属性">1.1.1 属性</h3>
+
+<p>每个<code>资源</code>都包含一定的信息，称为<code>属性</code>，例如：PC服务器的CPU型号、MySQL的监听端口、人员的性别等。</p>
+
+<p>对于那些能唯一确定一个资源对象的属性，称之为<code>关键属性</code>，例如：路由器有一个关键属性：MAC地址，因为根据 MAC地址可以唯一对应到一台路由器。</p>
+
+
+
+<h3 id="112-资源类型">1.1.2 资源类型</h3>
+
+<p>对于一具有相同属性的<code>资源</code>，出于方便管理的需要，将它们进行归类，结果所得到就是<code>资源类型</code>，例如：<code>PC服务器</code>。</p>
+
+
+
+<h3 id="113-资源模板">1.1.3 资源模板</h3>
+
+<p>很多时候，需要将多个具有共性（一般指具有一个多或多个相同<code>属性</code>）的<code>资源类型</code>统一进行管理，即将它们再一次归类抽象，称为<code>资源模板</code>。</p>
+
+<p>例如，<code>MySQL</code>、<code>Oracle</code>、<code>SQL Server</code>都是数据库，它们抽象出来的模板就是：<code>数据库</code>。</p>
+
+
+
+<h3 id="114-关系类型">1.1.4 关系类型</h3>
+
+<p><code>资源</code>不是孤立的，多个<code>资源</code>之间一般都有着各种各样的联系。每一种联系，都是一个<code>关系类型</code>。以下是默认内置好的<code>关系类型</code>：</p>
+
+<table><tbody><tr style="font-weight:bold">  <td><strong>编码</strong></td>  <td><strong>名称</strong></td></tr><tr>  <td>ComponentsOf</td>  <td>组成</td></tr><tr>  <td>HasMember</td>  <td>包含</td></tr><tr>  <td>DependsOn</td>  <td>依赖</td></tr><tr>  <td>Uses</td>  <td>使用</td></tr><tr>  <td>Provides</td>  <td>提供</td></tr><tr>  <td>ConnectsTo</td>  <td>连接</td></tr><tr>  <td>RunsOn</td>  <td>运行</td></tr><tr>  <td>Manages</td>  <td>管理</td></tr><tr>  <td>Virtualizes</td>  <td>虚拟化</td></tr></tbody></table>
+
+
+
+<h3 id="115-关系定义">1.1.5 关系定义</h3>
+
+<p>为了规范化<code>资源</code>之间的关系，避免<code>资源</code>之间的<code>关系</code>杂乱无序，需要规定一个<code>资源类型</code>和另一个<code>资源类型</code>之间能产生什么样的关联关系。</p>
+
+<p>例如：<code>MySQL</code>可以<code>运行</code>在<code>操作系统</code>上，但不能<code>运行</code>在<code>交换机</code>上。这里的<code>MySQL</code>、<code>运行</code>、<code>操作系统</code> 构成了一条 <code>关系定义</code>。（<code>RunsOn</code>在这里翻译为 <code>运行于</code>更恰当）。</p>
+
+<p>其中 <code>MySQL</code> 称为这条 <code>关系定义</code> 的源节点，<code>操作系统</code> 称为目标节点，<code>运行</code> 称为关系类型。</p>
+
+<p>此外，<code>资源类型</code>与 <code>资源模板</code> 之间，<code>资源模板</code>与 <code>资源模板</code> 之间也能创建 <code>关系定义</code>。</p>
+
+
+
+<h2 id="12-数据">1.2 数据</h2>
+
+
+
+<h3 id="121-资源">1.2.1 资源</h3>
+
+<p>一切可以被管理的对象称为<code>资源对象</code>，简称<code>资源</code>，它可以是真实存在，例如：PC服务器、人员等；也可以是虚拟抽象，MySQL数据库，链路等。</p>
+
+
+
+<h3 id="122-关系">1.2.2 关系</h3>
+
+<p><code>资源</code>与<code>资源</code>之前存在着各种各样的交互与联系，统称为<code>关系</code>，例如：<code>张三</code>管理<code>邮件服务器</code>上，这里的<code>管理</code>就是资源<code>张三</code>与资源<code>邮件服务器</code>。</p>
+
+
+
+<h1 id="2-api说明">2. API说明</h1>
+
+<p>这里只演示 API 的典型使用场景， 具体 OpenAPI 的详细定义，请参考相关的 OpenAPI 说明文档。</p>
+
+
+
+<h2 id="21-查询模型">2.1 查询模型</h2>
+
+<p>在使用资源库之前，往往需要对资源库的模型有一个大概的认识，例如我们可能需要知道：</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs markdown"><div class="hljs-line"><span class="hljs-bullet">1. </span>资源库中，都有什么资源类型？
+</div><div class="hljs-line"><span class="hljs-bullet">2. </span>针对某个资源类型，它有哪些属性？
+</div><div class="hljs-line"><span class="hljs-bullet">3. </span>针对某个资源类型，与它有关的其他资源类型有哪些？对于两个资源类型，它们之间能建立什么关系？
+</div></code></pre>
+
+<p>以上这些信息，可以通过下列 API 接口得到。</p>
+
+<table><tbody><tr style="font-weight:bold">  <td>API</td>  <td>描述</td></tr><tr>  <td>查询资源类型</td>  <td>根据参数查询符合条件的资源类型</td></tr><tr>  <td>获取类型属性</td>  <td>获取指定资源类型的属性列表</td></tr><tr>  <td>查询关系定义</td>  <td>获取指定资源类型的关系定义信息</td></tr></tbody></table>
+
+
+
+<h3 id="211-查询资源类型">2.1.1 查询资源类型</h3>
+
+<p>有两个 API 可以 “实现查询资源类型” 的功能：</p>
+
+<ul><li>如果不了解当前有哪些可用的资源类型，可以调用<code>查询资源类型</code>接口，先获取到所有的资源类型</li>
+<li>如果已经知道资源类型的编码，则可以调用<code>获取类型信息</code>来查看它的基本信息和属性列表</li>
+</ul>
+
+
+
+<h4 id="2111-查询资源类型">2.1.1.1 查询资源类型</h4>
+
+<p>接口：<a href="#">/store/openapi/v2/models/classes/query</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>列出当前租户下的所有资源类型，不分页</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/models/classes/query?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;page_size=-1'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>page_size</code>：分页查询时的每页记录数，指定为 -1 表示不分页，默认为分页，每页 100 条记录</li>
+<li rel="2"><code>sort</code>：排序字段，用于指定排序方向</li>
+<li rel="3"><code>name</code>：过滤条件，根据资源类型名称模糊匹配</li>
+<li rel="4"><code>code</code>：过滤条件，根据资源类型编码精确匹配</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"totalRecords"</span>:<span class="hljs-number">-1</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"dataList"</span>:[
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">            <span class="hljs-attr">"inline"</span>:<span class="hljs-literal">false</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"resOwners"</span>:[<span class="hljs-string">"MONITOR"</span>,<span class="hljs-string">"CMDB"</span>,<span class="hljs-string">"AUTOMATION"</span>,<span class="hljs-string">"NETWORK"</span>],
+</div><div class="hljs-line">            <span class="hljs-attr">"code"</span>:<span class="hljs-string">"ActiveMQ"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"layerCode"</span>:<span class="hljs-string">"Platform Resource"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"tenantId"</span>:<span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"attrCodes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"name"</span>:<span class="hljs-string">"ActiveMQ"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"id"</span>:<span class="hljs-string">"591164b3eff46f11f9b70a50"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"attributes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"builtin"</span>:<span class="hljs-literal">true</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">            <span class="hljs-attr">"inline"</span>:<span class="hljs-literal">false</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"resOwners"</span>:[<span class="hljs-string">"MONITOR"</span>,<span class="hljs-string">"CMDB"</span>,<span class="hljs-string">"AUTOMATION"</span>,<span class="hljs-string">"NETWORK"</span>],
+</div><div class="hljs-line">            <span class="hljs-attr">"code"</span>:<span class="hljs-string">"Apache"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"layerCode"</span>:<span class="hljs-string">"Platform Resource"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"tenantId"</span>:<span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"attrCodes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"name"</span>:<span class="hljs-string">"Apache"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"id"</span>:<span class="hljs-string">"591164b3eff46f11f9b70a51"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"attributes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"builtin"</span>:<span class="hljs-literal">true</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        //... 其他的资源类型
+</div><div class="hljs-line">    ],
+</div><div class="hljs-line">    <span class="hljs-attr">"empty"</span>:<span class="hljs-literal">false</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1">由于没有指定过滤条件，所以返回的是素所有的资源类型</li>
+<li rel="2"><code>totalRecords</code>： 符合条件的记录总数，-1 标识不进行统计记录总数</li>
+</ol>
+
+
+
+<h4 id="2112-获取类型信息">2.1.1.2 获取类型信息</h4>
+
+<p>接口：<a href="#">/store/openapi/v2/models/classes/get</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>获取类型编码为<code>Linux</code>的资源类型的信息</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/models/classes/get?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;code=Linux'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>code</code>：指定的类型编码，精确匹配</li>
+<li rel="2"><code>required_fields</code>：指定期望返回的属性，除了基本属性外，当 <code>required_fields</code> 包含 <code>attrs</code> 时还会包含该资源类型的属性列表</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"resOwners"</span>:[<span class="hljs-string">"MONITOR"</span>,<span class="hljs-string">"CMDB"</span>,<span class="hljs-string">"AUTOMATION"</span>,<span class="hljs-string">"NETWORK"</span>],
+</div><div class="hljs-line">    <span class="hljs-attr">"code"</span>:<span class="hljs-string">"Linux"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"layerCode"</span>:<span class="hljs-string">"Platform Resource"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"tenantId"</span>:<span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"attrCodes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"inline"</span>:<span class="hljs-literal">false</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"name"</span>:<span class="hljs-string">"Linux"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"id"</span>:<span class="hljs-string">"59290eb07f13091de09a4b2b"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"attributes"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"builtin"</span>:<span class="hljs-literal">true</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h3 id="212-获取类型属性">2.1.2 获取类型属性</h3>
+
+<p>接口：<a href="#">/store/openapi/v2/models/attrs/get_by_class</a></p>
+
+<p><strong>调用样例</strong></p>
+
+<blockquote>
+  <p>获取应用<code>Application</code>的属性列表</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/models/attrs/get_by_class?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;class_code=Application'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol start="1"><li rel="1"><code>class_code</code>：资源类型编码</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">[
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">        <span class="hljs-attr">"params"</span>:{
+</div><div class="hljs-line">            <span class="hljs-attr">"minLength"</span>:<span class="hljs-number">1</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"maxLength"</span>:<span class="hljs-number">500</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        <span class="hljs-attr">"tenantId"</span>:<span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"resOwners"</span>:[<span class="hljs-string">"MONITOR"</span>,<span class="hljs-string">"CMDB"</span>,<span class="hljs-string">"AUTOMATION"</span>,<span class="hljs-string">"NETWORK"</span>],
+</div><div class="hljs-line">        <span class="hljs-attr">"required"</span>:<span class="hljs-literal">false</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"code"</span>:<span class="hljs-string">"installPath"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"unit"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"name"</span>:<span class="hljs-string">"安装路径"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"id"</span>:<span class="hljs-string">"59290eaf7f13091de09a49be"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"type"</span>:<span class="hljs-string">"singleRowText"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"defaultValue"</span>:<span class="hljs-literal">null</span>,<span class="hljs-attr">"
+</span></div><div class="hljs-line">        builtin":<span class="hljs-literal">true</span>
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    //... 其他属性
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1">返回指定资源类型的所有属性</li>
+<li rel="2">默认情况下，每个属性的所有字段都会返回，如果只想要其中几个字段，可以试试参数： <code>required_fields</code></li>
+</ol>
+
+
+
+<h3 id="213-查询关系定义">2.1.3 查询关系定义</h3>
+
+<p>接口：<a href="http://../../../attachment/openapi/platform-store-res.html#api-Modelsrelationmeta-getRelationMetaByNode" target="_blank">/store/openapi/v2/models/relations/metas/get_by_node</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>获取资源类型<code>Application</code>的所有关系定义</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/models/relations/metas/get_by_node?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;node_type=CLASS&amp;node_code=Application&amp;relation_type_code='</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>node_type</code>：关系定义节点的类型，可以是 <code>CLASS</code>：资源类型，也是可以是 <code>INTERFACE</code>：资源模板</li>
+<li rel="2"><code>node_code</code>：关系定义节点的编码，可以是资源类型的编码，也可以是资源模板的编码</li>
+<li rel="3"><code>relation_type_code</code>：关系类型编码，对应于返回结果中的 <code>type</code>属性</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">[
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">        <span class="hljs-attr">"source"</span>: {
+</div><div class="hljs-line">            <span class="hljs-attr">"code"</span>: <span class="hljs-string">"Application"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"CLASS"</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        <span class="hljs-attr">"builtin"</span>: <span class="hljs-literal">false</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"dest"</span>: {
+</div><div class="hljs-line">            <span class="hljs-attr">"code"</span>: <span class="hljs-string">"T_SafetyNode"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"INTERFACE"</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        <span class="hljs-attr">"restriction"</span>: <span class="hljs-string">"MANY_ONE"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"运行"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"591d6ea6eff46f091e2a3793"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"RunsOn"</span>
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    //... 其他关系定义
+</div><div class="hljs-line">]
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1">返回结果包含了与指定节点存在关系的<code>资源类型</code>或<code>资源模板</code></li>
+<li rel="2">默认情况下，每个关系定义的所有字段都会返回，如果只想要其中几个字段，可以试试参数：<code>required_fields</code></li>
+</ol>
+
+
+
+<h3 id="214-获取两个资源类型间的关系定义">2.1.4 获取两个资源类型间的关系定义</h3>
+
+<p>本接口用于获取指定两个<code>资源类型</code>（或<code>资源模板</code>）之间的关系定义。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/models/relations/metas/get_by_source_dest</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>获取<code>Linux</code>与<code>Application</code>之间的关系定义，可用与判断两个类型（其实是这个类型的资源）之间能否创建关系。</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/models/relations/metas/get_by_source_dest?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;src_code=Linux&amp;dest_code=Application&amp;directed=false'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>src_code</code>：源节点的编码</li>
+<li rel="2"><code>dest_code</code>：目标节点编码</li>
+<li rel="3"><code>directed</code>：是否有向匹配，试着将样例中的 <code>directed</code> 值改为 true 试试</li>
+</ol>
+
+<p>调用结果：</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"source"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"code"</span>: <span class="hljs-string">"Application"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"CLASS"</span>
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    <span class="hljs-attr">"builtin"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"dest"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"code"</span>: <span class="hljs-string">"Linux"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"type"</span>: <span class="hljs-string">"CLASS"</span>
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    <span class="hljs-attr">"restriction"</span>: <span class="hljs-string">"MANY_ONE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"运行"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"591164b7eff46f11f9b70ba8"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"RunsOn"</span>
+</div><div class="hljs-line">]
+</div></code></pre>
+
+
+
+<h2 id="22-数据读写">2.2 数据读写</h2>
+
+<p>数据读写分为资源对象的读写、资源关系的读写两部分，以下分别说明。</p>
+
+
+
+<h3 id="221-资源写入">2.2.1 资源写入</h3>
+
+<p>本节演示资源写入（资源存储）相关的API。</p>
+
+
+
+<h4 id="2211-保存单个资源">2.2.1.1 保存单个资源</h4>
+
+<p>当我们需要存入一个资源对象时，在没有先查询一次的情况下，是不知道应该是“创建”还是“更新”的。 <br>
+为此，资源库提供了一个更通用的接口`保存资源：它综合了创建和更新这两个功能，根据待保存的资源是否已存在来决定是创建还是更新。</p>
+
+<p>如何判断一个资源是否已经存在呢？规则如下：</p>
+
+<ol><li rel="1">如果提供了资源ID，则根据ID查找</li>
+<li rel="2">如果提供了关键属性，则关键属性查找</li>
+</ol>
+
+<blockquote>
+  <p><strong>注意：</strong>如果明确知道是新建操作，那么请使用创建资源接口，这样当待保存资源的关键属性与另一个资源一样时，会提示错误，避免执行了更新操作，导致覆盖了另一个资源的属性。</p>
+</blockquote>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/save</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>新建一个<code>PC服务器</code>类型的资源</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/save?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">    "classCode":"PCServer",
+</div><div class="hljs-line">    "sources":["user"],
+</div><div class="hljs-line">    "name":"PCServer-dev-1",
+</div><div class="hljs-line">    "ip":"10.1.23.69",
+</div><div class="hljs-line">    "hostVendor":"dell",
+</div><div class="hljs-line">    "computerBrand":"PowerEdge",
+</div><div class="hljs-line">    "computerModel":"R730",
+</div><div class="hljs-line">    "os":"CentOS",
+</div><div class="hljs-line">    "cpuModel":"Xeon E5-2603 v3",
+</div><div class="hljs-line">    "cpuFrequency":"1.6",
+</div><div class="hljs-line">    "phyCpuNum":1,
+</div><div class="hljs-line">    "memoryCapacity":8,
+</div><div class="hljs-line">    "storageSize":1228.8
+</div><div class="hljs-line">    }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li><p>新建一个资源对象时，必须提供以下属性：</p>
+
+<ul>
+<li><code>classCode</code>：所属的资源类型的编码</li>
+<li><code>sources</code>：数据的来源信息，指明提交这个资源的主体是谁，<code>user</code> 是个特殊值，有特殊作用</li>
+<li><code>name</code>：资源的名称</li>
+<li>资源的关键属性，本例中，<code>PCServer</code> 类型的关键属性是“网络域”和“ip”</li></ul></li>
+<li><p>资源对象的属性分为两类：</p>
+
+<ul>
+<li>基本属性：又称为固有属性，因为它们是每个资源类型都有的，直接定义在 <code>ResObject</code> 这个对象上的。本例中，<code>classCode</code> 和 <code>sources</code> 就是基本属性</li>
+<li>扩展属性：又称为动态属性，因为它们是由各个资源类型定义出来的（即<code>属性</code>），会随着资源类型的维护而变化了。扩展属性的值必须与资源类型的定义一致，包括：数据类型、取值范围</li></ul></li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"items"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59369beaeff46f135b8dfbb6"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"data"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"changed"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"beforeState"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"afterState"</span>: <span class="hljs-string">"APPLY"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1"><code>items</code>：数组中的每个对象都代表一个对象的操作结果，如果是批量操作，items 就会有多个成员对象</li>
+<li rel="2"><code>item</code>: 保存了操作对象的ID，示例中为保存成功的资源ID</li>
+<li rel="3"><code>success</code>：是否操作成功的标识</li>
+</ol>
+
+
+
+<h4 id="2212-保存内联对象">2.2.1.2 保存内联对象</h4>
+
+<p>内联资源对象不能独立存在，它依附于另一个普通资源对象（称为外部对象），它的生命周期由这个外部对象来控制。 <br>
+每一个内联对象都有一个指向它所属的为外部对象的属性：outerObjectId，其值为外部对象的ID。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/save</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>新建一个<code>网络端口</code>类型的内联资源，它的外部对象为路由器，其ID为：592509ebeff46f72d3235595</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/save?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">        "classCode" : "NetworkPort",
+</div><div class="hljs-line">        "portType" : "EthernetPort",
+</div><div class="hljs-line">        "portNo" : "33",
+</div><div class="hljs-line">        "portIndex" : "67307278",
+</div><div class="hljs-line">        "sources" : [ "CMDB" ],
+</div><div class="hljs-line">        "outerObjectId" : "592509ebeff46f72d3235595",
+</div><div class="hljs-line">        "ip" : null,
+</div><div class="hljs-line">        "portRate" : "10",
+</div><div class="hljs-line">        "name" : "GigabitEthernet0/0/28"
+</div><div class="hljs-line">      }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>NetworkPort</code>：必须为内联类型，否则将会报错</li>
+<li rel="2"><code>outerObjectId</code>: 指定了外部对象的ID</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"items"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59369beaeff46f135b8dfbb7"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"data"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"changed"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"beforeState"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"afterState"</span>: <span class="hljs-string">"APPLY"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="2213-批量保存资源">2.2.1.3 批量保存资源</h4>
+
+<p>如果需要保存多个资源对象，那么批量保存接口是最合适的，特别是当待保存的资源大部分都是一种资源类型的时候，能获得更高的性能。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/batch_save</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>批量保存三个<code>网络端口</code>类型的内联资源</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/batch_save?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'[{
+</span></div><div class="hljs-line">          "classCode" : "NetworkPort",
+</div><div class="hljs-line">          "portType" : "EthernetPort",
+</div><div class="hljs-line">          "portNo" : "32",
+</div><div class="hljs-line">          "portIndex" : "67307277",
+</div><div class="hljs-line">          "sources" : [ "CMDB" ],
+</div><div class="hljs-line">          "outerObjectId" : "59252e48eff46f72d32355b9",
+</div><div class="hljs-line">          "ip" : null,
+</div><div class="hljs-line">          "portRate" : "10",
+</div><div class="hljs-line">          "name" : "GigabitEthernet0/0/27",
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">          "classCode" : "NetworkPort",
+</div><div class="hljs-line">          "portType" : "EthernetPort",
+</div><div class="hljs-line">          "portNo" : "33",
+</div><div class="hljs-line">          "portIndex" : "67307278",
+</div><div class="hljs-line">          "sources" : [ "CMDB" ],
+</div><div class="hljs-line">          "outerObjectId" : "59252e48eff46f72d32355b9",
+</div><div class="hljs-line">          "ip" : null,
+</div><div class="hljs-line">          "portRate" : "10",
+</div><div class="hljs-line">          "name" : "GigabitEthernet0/0/28",
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">          "classCode" : "NetworkPort",
+</div><div class="hljs-line">          "portType" : "EthernetPort",
+</div><div class="hljs-line">          "portNo" : "34",
+</div><div class="hljs-line">          "portIndex" : "67307279",
+</div><div class="hljs-line">          "sources" : [ "CMDB" ],
+</div><div class="hljs-line">          "outerObjectId" : "59252e48eff46f72d32355b9",
+</div><div class="hljs-line">          "ip" : null,
+</div><div class="hljs-line">          "portRate" : "10",
+</div><div class="hljs-line">          "name" : "GigabitEthernet0/0/29"
+</div><div class="hljs-line">        }]'
+</div></code></pre>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"items"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59252e5be5cbeca2847b3a05"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"data"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"changed"</span>: <span class="hljs-literal">false</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"beforeState"</span>: <span class="hljs-string">"APPLY"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"afterState"</span>: <span class="hljs-string">"APPLY"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59252e5be5cbeca2847b3a06"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"data"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"changed"</span>: <span class="hljs-literal">false</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"beforeState"</span>: <span class="hljs-string">"APPLY"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"afterState"</span>: <span class="hljs-string">"APPLY"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    },
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59252e5be5cbeca2847b3a07"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"data"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"changed"</span>: <span class="hljs-literal">false</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"beforeState"</span>: <span class="hljs-string">"APPLY"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"afterState"</span>: <span class="hljs-string">"APPLY"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h3 id="222-资源查询">2.2.2 资源查询</h3>
+
+<p>本节演示资源查询（资源读取）相关的API，主要包括：</p>
+
+<ul><li>根据关键属性查询资源</li>
+<li>根据属性查询资源</li>
+<li>根据关系查询资源</li>
+<li>根据标签查资源</li>
+</ul>
+
+
+
+<h4 id="2221-根据关键属性查询资源">2.2.2.1 根据关键属性查询资源</h4>
+
+<p>根据关键属性和资源类型编码，找到对应的资源对象。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/get_by_keyattrs</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>获取IP地址为 10.1.23.69 的PC服务器。</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/get_by_keyattrs?apikey=9cc4871e46094635a19d26557f9bb7f4&amp;class_code=PCServer&amp;attrs=ip:10.1.23.69&amp;required_fields=name,ip,className,storageSize'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>class_code</code>:  目标资源的类型编码</li>
+<li rel="2"><code>attrs</code>：关键属性信息</li>
+<li rel="3"><code>required_fields</code>：期望返回的属性字段</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  className: <span class="hljs-string">"PC服务器"</span>,
+</div><div class="hljs-line">  name: <span class="hljs-string">"PCServer-dev-1"</span>,
+</div><div class="hljs-line">  ip: <span class="hljs-string">"10.1.23.69"</span>,
+</div><div class="hljs-line">  storageSize: <span class="hljs-number">1228.8</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="2222-根据属性查询资源">2.2.2.2 根据属性查询资源</h4>
+
+<p>以资源对象的属性作为查询条件，过滤出符合条件的资源对象。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/query</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>根据多种条件组合，查询符合条件的资源对象</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/query?apikey=9cc4871e46094635a19d26557f9bb7f4'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">    "conditions": [
+</div><div class="hljs-line">      {
+</div><div class="hljs-line">        "field":"classCode",
+</div><div class="hljs-line">        "value":"PCServer"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"tags",
+</div><div class="hljs-line">        "operator":"IN",
+</div><div class="hljs-line">        "value":["Dell"]
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"tags",
+</div><div class="hljs-line">        "operator":"LIKE",
+</div><div class="hljs-line">        "value":":dev"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"tags",
+</div><div class="hljs-line">        "operator":"LIKE",
+</div><div class="hljs-line">        "value":"contury:"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"name",
+</div><div class="hljs-line">        "operator":"LIKE",
+</div><div class="hljs-line">        "value": "dev-1"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"resOwners",
+</div><div class="hljs-line">        "operator":"IS_NOT_NULL"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"resOwners",
+</div><div class="hljs-line">        "operator":"NOT_IN",
+</div><div class="hljs-line">        "value":["Discovery"]
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"memoryCapacity",
+</div><div class="hljs-line">        "operator":"GT",
+</div><div class="hljs-line">        "value":4
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"cpuFrequency",
+</div><div class="hljs-line">        "operator":"LTE",
+</div><div class="hljs-line">        "value":4.9
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"sources",
+</div><div class="hljs-line">        "operator":"ARRAY_SIZE_EQ",
+</div><div class="hljs-line">        "value":1
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "field":"os",
+</div><div class="hljs-line">        "operator":"CONTAIN_CS",
+</div><div class="hljs-line">        "value":"CentOS"
+</div><div class="hljs-line">      },{
+</div><div class="hljs-line">        "cjt":"OR",
+</div><div class="hljs-line">        "items":[
+</div><div class="hljs-line">          {
+</div><div class="hljs-line">                "field":"updateTime",
+</div><div class="hljs-line">                "operator": "RANGE",
+</div><div class="hljs-line">                "value":["2017-06-05 20:00:00", "2017-06-07 20:00:00"]
+</div><div class="hljs-line">            },
+</div><div class="hljs-line">            {
+</div><div class="hljs-line">                "field":"classCode",
+</div><div class="hljs-line">                "value":"Switch"
+</div><div class="hljs-line">            }
+</div><div class="hljs-line">        ]
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line"> }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>{ "field":"classCode", "value":"PCServer" }</code>:  等价于 <code>{ "field":"classCode", "operator":"EQ", "value":"PCServer" }</code>，默认的 条件比较符 <code>operator</code> 为 <code>EQ</code>，所以可以省略</li>
+<li rel="2"><code>tags</code>、<code>resOwners</code>、<code>sources</code>  的值是数组，支持 <code>IN</code>、<code>NOT_IN</code>、以及 <code>ARRAY_SIZE_EQ</code> 等数组特有的比较符</li>
+<li rel="3"><code>tags</code> 支持 <code>key:value</code> 标签的模糊查询，无论是 <code>key</code> 还是 <code>value</code></li>
+<li rel="4"><code>{ "cjt":"OR", "items": [...]}</code> ：这是一个 OR 的查询条件集</li>
+<li rel="5"><code>RANGE</code>：代表范围的查询，目前支持日期类型和数值类型</li>
+<li rel="6"><code>conditions</code>：查询条件信息，<code>field</code> 为资源对象的属性的编码，<code>operator</code>为比较符，详细请参考<a href="#">附录、高级查询</a>章节</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"totalRecords"</span>: <span class="hljs-number">-1</span>,
+</div><div class="hljs-line">  <span class="hljs-attr">"dataList"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"59369beaeff46f135b8dfbb6"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"classCode"</span>: <span class="hljs-string">"PCServer"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"className"</span>: <span class="hljs-string">"PC服务器"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"outerObjectId"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"createTime"</span>: <span class="hljs-string">"2017-06-06 20:11:22"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"updateTime"</span>: <span class="hljs-string">"2017-06-06 20:11:22"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"sources"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"user"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"tags"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"Dell"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"host:dev"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"contury:CN"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"resOwners"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"MONITOR"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"CMDB"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"AUTOMATION"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"NETWORK"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"PCServer-dev-1"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"ip"</span>: <span class="hljs-string">"10.1.23.69"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"hostVendor"</span>: <span class="hljs-string">"dell"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"computerBrand"</span>: <span class="hljs-string">"PowerEdge"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"computerModel"</span>: <span class="hljs-string">"R730"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"os"</span>: <span class="hljs-string">"CentOS"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"cpuModel"</span>: <span class="hljs-string">"Xeon E5-2603 v3"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"cpuFrequency"</span>: <span class="hljs-number">1.6</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"phyCpuNum"</span>: <span class="hljs-number">1</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"memoryCapacity"</span>: <span class="hljs-number">8</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"storageSize"</span>: <span class="hljs-number">1228.8</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"sshPort"</span>: <span class="hljs-number">22</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"networkDomain"</span>: {
+</div><div class="hljs-line">        <span class="hljs-attr">"code"</span>: <span class="hljs-string">"defaultZone"</span>,
+</div><div class="hljs-line">        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"默认域"</span>
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ],
+</div><div class="hljs-line">  <span class="hljs-attr">"empty"</span>: <span class="hljs-literal">false</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="2223-根据关系查询资源">2.2.2.3 根据关系查询资源</h4>
+
+<p>查询与指定的资源存在直接关系（不包含间接关系）的资源对象。</p>
+
+<p>接口：<a href="http://undefined" target="_blank">/store/openapi/v2/resources/query_related</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>查询与ID为<code>5928d317eff46f5ff7afce4f</code>的资源存在运行关系（<code>RunsOn</code>），且创建时间晚于<code>2017-05-29 20:55:00</code>的资源。</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/resources/query_related?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span>\
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type:application/json'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'resource_id:5928d317eff46f5ff7afce4f'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'relation_type_code:RunsOn'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">      "conditions": [
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">          "field":"createTime",
+</div><div class="hljs-line">          "operator":"GT",
+</div><div class="hljs-line">          "value":"2017-05-29 20:55:00"
+</div><div class="hljs-line">        }
+</div><div class="hljs-line">      ]
+</div><div class="hljs-line">  }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>resource_id</code>：指定的资源ID。</li>
+<li rel="2"><code>relation_type_code</code>：关系的类型编码。</li>
+</ol>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"totalRecords"</span>: <span class="hljs-number">-1</span>,
+</div><div class="hljs-line">  <span class="hljs-attr">"dataList"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"592f7b5feff46f602f20dc1e"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"classCode"</span>: <span class="hljs-string">"IPAddress"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"className"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"outerObjectId"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"createTime"</span>: <span class="hljs-string">"2017-06-01 10:26:39"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"updateTime"</span>: <span class="hljs-string">"2017-06-01 10:26:39"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"sources"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"discovery"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"10.1.1.4"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"ip"</span>: <span class="hljs-string">"10.1.1.4"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"ciType"</span>: <span class="hljs-string">"Switch"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"runningService"</span>: <span class="hljs-string">"telnet,Web Servers"</span>
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ],
+</div><div class="hljs-line">  <span class="hljs-attr">"empty"</span>: <span class="hljs-literal">false</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="2224-根据标签查询资源">2.2.2.4 根据标签查询资源</h4>
+
+<p>以资源对象上的<code>标签</code>属性作为查询条件，进行查询。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/query</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>查询所有打了 <code>标签1</code> 这个标签的资源，要求分页查询，每页记录数为 10 条，并按类型编码排序</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST <span class="hljs-string">"http://prod.dev.cn/store/openapi/v2/resources/query?apikey=b8cc1de3fa0c44e6b34d89fbb8d1a228"</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">     "pageNum":0,
+</div><div class="hljs-line">     "pageSize":10,
+</div><div class="hljs-line">     "needCount":false,
+</div><div class="hljs-line">     "orderField":["classCode"],
+</div><div class="hljs-line">     "conditions":[
+</div><div class="hljs-line">      {
+</div><div class="hljs-line">         "field":"tags",
+</div><div class="hljs-line">         "operator": "IN",
+</div><div class="hljs-line">         "value":"标签1"
+</div><div class="hljs-line">      }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line">  }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li><code>apikey</code>: 访问的APIKEY</li>
+<li><code>needCount</code>: 是否需要统计总数</li>
+<li><code>conditions</code>: 查询条件，用于过滤资源对象，这里是过滤出打了<code>标签1</code>这个标签的资源</li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">  <span class="hljs-attr">"totalRecords"</span>: <span class="hljs-number">-1</span>,
+</div><div class="hljs-line">  <span class="hljs-attr">"dataList"</span>: [
+</div><div class="hljs-line">    {
+</div><div class="hljs-line">      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"5927fb22eff46f5ff7afce3b"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"4ff2c44db81a44119a90525cde55cce3"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"classCode"</span>: <span class="hljs-string">"AAA"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"className"</span>: <span class="hljs-string">"AAA"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"outerObjectId"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"createTime"</span>: <span class="hljs-string">"2017-05-26 17:53:38"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"updateTime"</span>: <span class="hljs-string">"2017-05-26 17:53:38"</span>,
+</div><div class="hljs-line">      <span class="hljs-attr">"sources"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"user"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"tags"</span>: [
+</div><div class="hljs-line">        <span class="hljs-string">"标签1"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"标签2"</span>,
+</div><div class="hljs-line">        <span class="hljs-string">"你好:世界"</span>
+</div><div class="hljs-line">      ],
+</div><div class="hljs-line">      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"AAA-12"</span>
+</div><div class="hljs-line">    }
+</div><div class="hljs-line">  ],
+</div><div class="hljs-line">  <span class="hljs-attr">"empty"</span>: <span class="hljs-literal">false</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ul><li><code>totalRecords</code>: 所能查询到的资源总数，如果设置<code>needCount</code>为false，则返回-1</li>
+<li><code>dataList</code>: 资源对象列表</li>
+</ul>
+
+
+
+<h3 id="223-资源标签">2.2.3 资源标签</h3>
+
+<p>本节演示资源标签相关API。</p>
+
+
+
+<h4 id="2231-为资源添加标签">2.2.3.1 为资源添加标签</h4>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/tags/add</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>给ID为<code>resource_id</code>的资源增加一个标签：<code>标签测试</code></p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST <span class="hljs-string">"http://prod.dev.cn/store/openapi/v2/resources/tags/add?apikey=b8cc1de3fa0c44e6b34d89fbb8d1a228"</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'resource_id:5927fb22eff46f5ff7afce3b'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'res_owner: CMDB'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'标签测试'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li><code>apikey</code>：访问的APIKEY</li>
+<li><code>resource_id</code>：资源ID</li>
+<li><code>res_owner</code>：纳管资源的主体，合法的值为：CMDB、AUTOMATION、MONITOR、NETWORK，可选</li>
+<li><code>标签测试</code>：这是一个单文本标签</li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+<p>此操作结果没有数据返回，可通过状态码判别是否成功</p>
+
+<ul><li><code>200</code> : 调用成功</li>
+<li><code>其他</code> ：调用出错</li>
+</ul>
+
+
+
+<h4 id="2232-获取资源的标签">2.2.3.2  获取资源的标签</h4>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/tags/get</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>获取ID为<code>5927fb22eff46f5ff7afce3b</code>的资源上所打的标签</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">"http://prod.dev.cn/store/openapi/v2/resources/tags/get?apikey=b8cc1de3fa0c44e6b34d89fbb8d1a228&amp;resource_id=5927fb22eff46f5ff7afce3b"</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li><code>apikey</code>：访问的APIKEY</li>
+<li><code>resource_id</code>：资源ID</li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">[
+</div><div class="hljs-line">  {
+</div><div class="hljs-line">    <span class="hljs-attr">"key"</span>:<span class="hljs-string">"标签测试"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>:<span class="hljs-literal">null</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"builtin"</span>:<span class="hljs-literal">false</span>
+</div><div class="hljs-line">  }
+</div><div class="hljs-line">]
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ul><li><code>key</code>：单文本标签的内容，或 key:value 标签的 key 值</li>
+<li><code>value</code>：key:value 标签的 value 值</li>
+<li><code>builtin</code>：如果为 true 则说明这个标签是系统内置打上的，不能被删除或修改</li>
+</ul>
+
+
+
+<h4 id="2233-设置资源标签">2.2.3.3 设置资源标签</h4>
+
+<p>用指定的标签，替换指定资源上的所有非内置标签。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/resources/tags/set</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>将 ID 为<code>5927fb22eff46f5ff7afce3b</code>的资源的标签设置为：”标签1”, “标签2”, “你好:世界”</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST <span class="hljs-string">"http://prod.dev.cn/store/openapi/v2/resources/tags/set?apikey=b8cc1de3fa0c44e6b34d89fbb8d1a228"</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'resource_id:5927fb22eff46f5ff7afce3b'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'res_owner: CMDB'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'["标签1", "标签2", "你好:世界"]'</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li><code>apikey</code>：访问的APIKEY</li>
+<li><code>resource_id</code>：资源ID</li>
+<li><code>res_owner</code>：纳管资源的主体，合法的值为：CMDB、AUTOMATION、MONITOR、NETWORK，可选</li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+<p>此操作结果没有数据返回，可通过状态码判别是否成功</p>
+
+<ul><li><code>200</code> : 调用成功</li>
+<li><code>其他</code> ：调用出错</li>
+</ul>
+
+
+
+<h3 id="224-关系写入">2.2.4 关系写入</h3>
+
+<p>本节演示资源关系存储相关的API，包括：</p>
+
+<ul><li>保存关系</li>
+<li>删除关系</li>
+</ul>
+
+
+
+<h4 id="2241-保存单条关系">2.2.4.1 保存单条关系</h4>
+
+<p>接口：<a href="#">/store/openapi/v2/relations/save</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>新建一条关系</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/relations/save?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'{
+</span></div><div class="hljs-line">    "tenantId":"e10adc3949ba59abbe56e057f20f88dd",
+</div><div class="hljs-line">    "srcId":"5928d317eff46f5ff7afce4f",
+</div><div class="hljs-line">    "srcClzCode":"Business",
+</div><div class="hljs-line">    "dstId":"592825adeff46f5ff7afce4a",
+</div><div class="hljs-line">    "dstClzCode":"Windows",
+</div><div class="hljs-line">    "typeCode":"RunsOn"
+</div><div class="hljs-line">    }'
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ul><li>新建一条关系，必须提供以下属性： <br>
+<ol>
+<li rel="1"><code>typeCode</code>：关系的类型编码</li>
+<li rel="2"><code>srcId</code>：关系中源节点的资源ID</li>
+<li rel="3"><code>dstId</code>：关系中目标节点的资源ID</li>
+<li rel="4"><code>srcClzCode</code>：源节点资源的类型编码</li>
+<li rel="5"><code>dstClzCode</code>：目标节点资源的类型编码</li></ol></li>
+</ul>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"items"</span>: [
+</div><div class="hljs-line">          {
+</div><div class="hljs-line">            <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59:1"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"data"</span>: <span class="hljs-literal">null</span>
+</div><div class="hljs-line">        }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1"><code>items</code>：数组中的每个对象都代表一个对象的操作结果，如果是批量操作，items 就会有多个成员对象</li>
+<li rel="2"><code>item</code>: 保存了操作对象的ID，示例中为保存成功的资源ID</li>
+<li rel="3"><code>success</code>：是否操作成功的标识</li>
+</ol>
+
+
+
+<h4 id="2242-批量保存关系">2.2.4.2 批量保存关系</h4>
+
+<p>相比单个保存，当需要保存多个关系对象时，用批量保存关系接口可以获得更高的性能。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/relations/batch_save</a></p>
+
+<p>调用示例</p>
+
+<blockquote>
+  <p>批量保存两条关系</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X POST \
+</div><div class="hljs-line">  <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/relations/batch_save?apikey=e10adc3949ba59abbe56e057f2gg88dd'</span> \
+</div><div class="hljs-line">  -H <span class="hljs-string">'content-type: application/json'</span> \
+</div><div class="hljs-line">  <span class="hljs-_">-d</span> <span class="hljs-string">'[{
+</span></div><div class="hljs-line">            "srcId":"5928d317eff46f5ff7afce4f",
+</div><div class="hljs-line">            "srcClzCode":"Business",
+</div><div class="hljs-line">            "dstId":"592825adeff46f5ff7afce4a",
+</div><div class="hljs-line">            "dstClzCode":"Windows",
+</div><div class="hljs-line">            "typeCode":"RunsOn"
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">            "srcId":"5928d317eff46f5ff7afce4f",
+</div><div class="hljs-line">            "srcClzCode":"Business",
+</div><div class="hljs-line">            "dstId":"592f7b5feff46f602f20dc1e",
+</div><div class="hljs-line">            "dstClzCode":"IPAddress",
+</div><div class="hljs-line">            "typeCode":"RunsOn"
+</div><div class="hljs-line">        }]'
+</div></code></pre>
+
+<p>调用结果：HTTP 200</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"items"</span>: [
+</div><div class="hljs-line">          {
+</div><div class="hljs-line">            <span class="hljs-attr">"item"</span>: <span class="hljs-string">"62:1"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"data"</span>: <span class="hljs-literal">null</span>
+</div><div class="hljs-line">        },
+</div><div class="hljs-line">          {
+</div><div class="hljs-line">            <span class="hljs-attr">"item"</span>: <span class="hljs-string">"59:2"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"message"</span>: <span class="hljs-literal">null</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"data"</span>: <span class="hljs-literal">null</span>
+</div><div class="hljs-line">        }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="2243-删除关系">2.2.4.3 删除关系</h4>
+
+<p>暂略。</p>
+
+
+
+<h3 id="225-关系查询">2.2.5 关系查询</h3>
+
+<p>本节演示资源关系读取相关的API。</p>
+
+
+
+<h4 id="2251-查询匹配的关系">2.2.5.1 查询匹配的关系</h4>
+
+<p>获取符合查询条件的所有关系。</p>
+
+<p>接口：<a href="#">/store/openapi/v2/relations/query</a></p>
+
+<p>调用样例</p>
+
+<blockquote>
+  <p>查询关系类型为<code>RunsOn</code>，且源节点类型编码为<code>Business</code>，目标节点类型编码为<code>Windows</code> 的关系</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><div class="hljs-line">curl -X GET <span class="hljs-string">'http://prod.dev.cn/store/openapi/v2/relations/query?apikey=e10adc3949ba59abbe56e057f2gg88dd&amp;type_code=RunsOn&amp;dst_clz_code=Windows&amp;src_clz_code=Business"</span>
+</div></code></pre>
+
+<p>参数的关键点如下：</p>
+
+<ol><li rel="1"><code>type_code</code>：关系的类型</li>
+<li rel="2"><code>src_clz_code</code>：源节点资源的类型编码</li>
+<li rel="3"><code>dst_clz_code</code>：目标节点资源的类型编码</li>
+</ol>
+
+<p>调用结果：</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"totalRecords"</span>: <span class="hljs-number">-1</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"dataList"</span>:[
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">            <span class="hljs-attr">"tenantId"</span>: <span class="hljs-string">"e10adc3949ba59abbe56e057f20f88dd"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"dstId"</span>: <span class="hljs-string">"592825adeff46f5ff7afce4a"</span>,
+</div><div class="hljs-line">            <span class="hljs-attr">"srcId“: "</span>5928d317eff46f5ff7afce4f<span class="hljs-attr">",
+</span></div><div class="hljs-line">            "dstClzCode<span class="hljs-attr">": "</span>Windows<span class="hljs-attr">",
+</span></div><div class="hljs-line">            "srcClzCode<span class="hljs-attr">": "</span>Business<span class="hljs-attr">",
+</span></div><div class="hljs-line">            "id<span class="hljs-attr">": "</span>62:<span class="hljs-number">1</span><span class="hljs-string">",
+</span></div><div class="hljs-line">            "typeCode<span class="hljs-string">": "</span>RunsOn<span class="hljs-string">"
+</span></div><div class="hljs-line">        }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p>返回结果说明：</p>
+
+<ol><li rel="1"><code>tenantId</code>：租户ID</li>
+<li rel="2"><code>srcId</code>：关系中源节点的资源ID</li>
+<li rel="3"><code>dstId</code>：关系中目标节点的资源ID</li>
+<li rel="4"><code>srcClzCode</code>：源节点资源的类型编码</li>
+<li rel="5"><code>dstClzCode</code>：目标节点资源的类型编码</li>
+<li rel="6"><code>typeCode</code>：关系类型编码</li>
+</ol>
+
+
+
+<h1 id="3-附录">3. 附录</h1>
+
+
+
+<h2 id="31-高级查询">3.1 高级查询</h2>
+
+<p>相比普通的条件查询，高级查询支持丰富的查询条件，包括与（AND）、或（OR）条件的任意组合。</p>
+
+
+
+<h3 id="311-丰富的查询条件">3.1.1 丰富的查询条件</h3>
+
+
+
+<h4 id="3111-条件格式">3.1.1.1 条件格式</h4>
+
+<p>每一个查询条件都必须符合如下格式：</p>
+
+<p><strong>{filed}</strong>  <strong>{operator}</strong> <strong>{value}</strong></p>
+
+<ul><li><code>{field}</code>: 即待匹配的属性的编码</li>
+<li><code>{operator}</code>：条件的比较符</li>
+<li><code>{value}</code>： 查询条件的值，支持单值，或数组</li>
+</ul>
+
+<p><strong>示例</strong></p>
+
+<blockquote>
+  <p>匹配属性 <code>IP</code> 的值包含 <code>10.2</code> 的记录 </p>
+</blockquote>
+
+<ul><li>OpenAPI  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"IP"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"LIKE"</span>,  // 模糊匹配，等价于: QueryOperator.CONTAIN_CI
+</div><div class="hljs-line">    <span class="hljs-string">"value"</span>: <span class="hljs-string">"10.2"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="3112-条件比较符">3.1.1.2 条件比较符</h4>
+
+<p>不同的数据类型，支持的比较符是不一样的，具体如下所示：</p>
+
+<table><tbody><tr style="font-weight:bold">  <td>比较符</td>  <td>支持的值类型</td>  <td>是否支持多值</td>  <td>说明</td></tr><tr>  <td>RANGE</td>  <td>数字, 日期</td>  <td>必须有两个值</td>  <td>范围比较，等价于 v1 &lt;= value &lt;= v2</td></tr><tr>  <td>EQ</td>  <td>所有类型</td>  <td>是，等价于数组匹配</td>  <td>等于</td></tr><tr>  <td>NOT_EQ</td>  <td>所有类型</td>  <td>是，等价于数组匹配</td>  <td>不等于</td></tr><tr>  <td>GT</td>  <td>数字, 日期</td>  <td>否</td>  <td>大于</td></tr><tr>  <td>GTE</td>  <td>数字, 日期</td>  <td>否</td>  <td>大于等于</td></tr><tr>  <td>LT</td>  <td>数字, 日期</td>  <td>否</td>  <td>小于</td></tr><tr>  <td>LTE</td>  <td>数字, 日期</td>  <td>否</td>  <td>小于等于</td></tr><tr>  <td>CONTAIN_CS</td>  <td>字符串</td>  <td>否</td>  <td>字符串包含，大小写敏感</td></tr><tr>  <td>CONTAIN_CI</td>  <td>字符串</td>  <td>否</td>  <td>字符串包含，大小写不敏感</td></tr><tr>  <td>LIKE</td>  <td>字符串</td>  <td>否</td>  <td>等价于 CONTAIN_CI (OpenAPI 专用)</td></tr><tr>  <td>IS_NULL</td>  <td></td>  <td>否，不需要值</td>  <td>值为 null</td></tr><tr>  <td>IS_NOT_NULL</td>  <td></td>  <td>否，不需要值</td>  <td>值不为 null</td></tr><tr>  <td>IN</td>  <td>数组</td>  <td>是</td>  <td>值包含于数组中</td></tr><tr>  <td>NOT_IN</td>  <td>数组</td>  <td>是</td>  <td>值不包含于数组中</td></tr><tr>  <td>ALL_EXISTS</td>  <td>数组</td>  <td>是</td>  <td>数组内的元素全部包含</td></tr><tr>  <td>ARRAY_SIZE_EQ</td>  <td>数值</td>  <td>否</td>  <td>判断数组内的元素个数是否等于指定值</td></tr></tbody></table>
+
+<p><strong>示例</strong>  </p>
+
+<p>以下逐一说明各个比较符的使用形式。</p>
+
+<ul><li>RANGE <br>
+查出 <code>cpuCores</code>的值在 <code>1</code> 和 <code>10</code> 之间的记录 </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"RANGE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: [<span class="hljs-number">1</span>， <span class="hljs-number">10</span>]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>EQ <br>
+查出 <code>cpuCores</code>的值等于 <code>4</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"EQ"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-number">4</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>NOT_EQ <br>
+查出 <code>cpuCores</code>的值不等于 <code>8</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"NOT_EQ"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-number">8</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>GT <br>
+查出 <code>cpuCores</code>的值大于 <code>8</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"GT"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-number">8</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>GTE <br>
+查出 <code>createTime</code>的值大与等于 <code>2017-06-16 12:00:00</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"createTime"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"GTE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"2017-06-16 12:00:00"</span> // 日期类型，OpenAPI 只识别 yyyy-MM-dd HH:mm:ss 格式
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>LT <br>
+查出 <code>createTime</code>的值小于 <code>2017-06-16 12:00:00</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"createTime"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"LT"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"2017-06-16 12:00:00"</span> // 日期类型，OpenAPI 只识别 yyyy-MM-dd HH:mm:ss 格式
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>LTE <br>
+查出 <code>cpuCores</code>的值小于等与 <code>6</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"LTE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-number">6</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>CONTAIN_CS <br>
+查出 <code>name</code>的值包含 <code>CentOS</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"name"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"CONTAIN_CS"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"CentOS"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>CONTAIN_CI <br>
+查出 <code>name</code>的值包含 <code>centos</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"name"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"CONTAIN_CI"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"centos"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>LIKE <br>
+查出 <code>name</code>的值包含 <code>cent</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"name"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"LIKE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"cent"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>IS_NULL <br>
+查出 <code>resOwners</code>属性不存在，或属性存在但没有值的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"IS_NULL"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>IS_NOT_NULLL <br>
+查出 <code>resOwners</code>属性有值的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"IS_NOT_NULL"</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>IN <br>
+查出 <code>resOwners</code> 值包含 <code>AUTOMATION</code> 或  <code>MONITOR</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"IN"</span>，
+</div><div class="hljs-line">    <span class="hljs-string">"value"</span>: [<span class="hljs-string">"AUTOMATION"</span>, <span class="hljs-string">"MONITOR"</span>]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>NOT_IN <br>
+查出 <code>resOwners</code> 值既不包含 <code>DISCOVERY</code>  也不包含  <code>CMDB</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"NOT_IN"</span>，
+</div><div class="hljs-line">    <span class="hljs-string">"value"</span>: [<span class="hljs-string">"DISCOVERY"</span>, <span class="hljs-string">"CMDB"</span>]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>ALL_EXISTS <br>
+查出 <code>resOwners</code> 的值同时包含 <code>AUTOMATION</code>、<code>MONITOR</code> 和  <code>DISCOVERY</code> 的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"ALL_EXISTS"</span>，
+</div><div class="hljs-line">    <span class="hljs-string">"value"</span>: [<span class="hljs-string">"AUTOMATION"</span>, <span class="hljs-string">"MONITOR"</span>，<span class="hljs-string">"DISCOVERY"</span>]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<ul><li>ARRAY_SIZE_EQ <br>
+查出 <code>resOwners</code> 的值有 <code>2</code> 个元素的记录  </li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"resOwners"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"ARRAY_SIZE_EQ"</span>，
+</div><div class="hljs-line">    <span class="hljs-string">"value"</span>: <span class="hljs-number">2</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+
+
+<h4 id="3113-条件比较值">3.1.1.3 条件比较值</h4>
+
+<p><strong>单值、多值</strong></p>
+
+<p>条件值的可以是单值，也可以是多个值（数组或列表）。</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">// 单值
+</div><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"name"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"LIKE"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"linux"</span>
+</div><div class="hljs-line">}
+</div><div class="hljs-line"><wbr>
+</div><div class="hljs-line">// 多值
+</div><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"tags"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"IN"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: [<span class="hljs-string">"tag-1"</span>, <span class="hljs-string">"tag-2"</span>]
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p><strong>值类型匹配</strong></p>
+
+<p>比较值的类型，必须与待匹配的记录的属性值类型一致，否则无法匹配。 <br>
+举个例子，如果待匹配的属性值类型为<strong>数值型</strong>，则：</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">// 匹配成功
+</div><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"EQ"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-number">4</span>
+</div><div class="hljs-line">}
+</div><div class="hljs-line"><wbr>
+</div><div class="hljs-line">// 匹配失败
+</div><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"field"</span>: <span class="hljs-string">"cpuCores"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"EQ"</span>,
+</div><div class="hljs-line">    <span class="hljs-attr">"value"</span>: <span class="hljs-string">"4"</span>  // 值类型不一致，条件执行结果为 <span class="hljs-literal">false</span>
+</div><div class="hljs-line">}
+</div></code></pre>
+
+<p><strong>值类型</strong>  </p>
+
+<p>比较条件值，目前只支持<code>Java 简单类型</code>、<code>字符串</code>、<code>日期</code>、以及 <code>数组</code>，如下所示：</p>
+
+<ul><li><code>数值型</code>：包括 int、short、float、double</li>
+<li><code>布尔型</code>： 即 boolean类型，有效值为：true，false</li>
+<li><code>字符串</code>：文本</li>
+<li><code>日期</code>：日期</li>
+<li><code>数组</code>：上述类型的数组</li>
+</ul>
+
+
+
+<h3 id="312-灵活的条件组装">3.1.2 灵活的条件组装</h3>
+
+<p>支持 <code>AND</code> 条件 和 <code>OR</code> 条件的无限嵌套，但出于性能的考虑，请尽量减少嵌套的层次。</p>
+
+<p><strong>格式</strong>  </p>
+
+<blockquote>
+  <p>查出<code>classCode</code> 等于 <code>Switch</code>，或 <code>updateTime</code> 间于 <code>2017-06-05 20:00:00</code> 和 <code>2017-06-07 20:00:00</code> 之间的记录  </p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-json hljs"><div class="hljs-line">{
+</div><div class="hljs-line">    <span class="hljs-attr">"cjt"</span>:<span class="hljs-string">"OR"</span>,  // 可以省略，默认为 AND
+</div><div class="hljs-line">    <span class="hljs-attr">"items"</span>:[
+</div><div class="hljs-line">        {
+</div><div class="hljs-line">             <span class="hljs-attr">"field"</span>:<span class="hljs-string">"updateTime"</span>,
+</div><div class="hljs-line">             <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"RANGE"</span>,
+</div><div class="hljs-line">             <span class="hljs-attr">"value"</span>:[<span class="hljs-string">"2017-06-05 20:00:00"</span>, <span class="hljs-string">"2017-06-07 20:00:00"</span>]
+</div><div class="hljs-line">         },
+</div><div class="hljs-line">         {
+</div><div class="hljs-line">             <span class="hljs-attr">"field"</span>:<span class="hljs-string">"classCode"</span>, 
+</div><div class="hljs-line">             <span class="hljs-attr">"value"</span>:<span class="hljs-string">"Switch"</span>
+</div><div class="hljs-line">         }
+</div><div class="hljs-line">    ]
+</div><div class="hljs-line">}
+</div></code></pre></div></body></html>

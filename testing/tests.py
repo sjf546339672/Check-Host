@@ -48,6 +48,7 @@ class TestUyunCheck(object):
     def test_check_ipmi(self):
         """测试检查主机是否上电"""
         get_result = self.uyun_check.check_ipmi()
+        pass
 
     @pytest.mark.parametrize("result_ping, result_ssh, result_impi, result", [
         (json.dumps({"10.1.62.106": "true"}), json.dumps({"10.1.62.106": "true"}), "true", "采控代理异常"),
@@ -67,3 +68,11 @@ class TestUyunCheck(object):
         """测试创建一个新的告警"""
         result = self.uyun_check.get_result_alert(result_ping, result_ssh, result_impi, ip, ciid)
         assert result == 200
+
+
+class Point(object):
+    __slots__ = ("x", "y")
+
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
