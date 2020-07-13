@@ -4,7 +4,8 @@
     <list default="true" id="ba2a4eea-9e45-4820-a4e8-73986953a205" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check.py" beforeDir="false" afterPath="$PROJECT_DIR$/check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zzz.py" beforeDir="false" afterPath="$PROJECT_DIR$/zzz.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../devcenter-project-template" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -66,7 +67,7 @@
       <recent name="E:\Uyun-python\Check-Host" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.check_update">
+  <component name="RunManager" selected="Python.zza">
     <configuration name="a" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Check-Host" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,29 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Check-Host" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing/tests.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="zz" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="zza" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Check-Host" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,7 +147,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zz.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zza.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zzz" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Check-Host" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zzz.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,19 +179,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.zz" />
       <item itemvalue="Python.check" />
-      <item itemvalue="Python.tests" />
       <item itemvalue="Python.a" />
       <item itemvalue="Python.check_update" />
+      <item itemvalue="Python.zzz" />
+      <item itemvalue="Python.zza" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.zza" />
         <item itemvalue="Python.check_update" />
+        <item itemvalue="Python.zzz" />
         <item itemvalue="Python.check" />
         <item itemvalue="Python.a" />
-        <item itemvalue="Python.zz" />
-        <item itemvalue="Python.tests" />
       </list>
     </recent_temporary>
   </component>
@@ -214,6 +215,7 @@
       <workItem from="1593584510651" duration="84000" />
       <workItem from="1594349608496" duration="11828000" />
       <workItem from="1594370309478" duration="3337000" />
+      <workItem from="1594602057560" duration="27667000" />
     </task>
     <servers />
   </component>
@@ -225,22 +227,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="687" y="216" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594370362049" />
-    <state width="1867" height="213" key="GridCell.Tab.0.bottom" timestamp="1594369741596">
+    <state width="1867" height="237" key="GridCell.Tab.0.bottom" timestamp="1594635094307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594369741596" />
-    <state width="1867" height="213" key="GridCell.Tab.0.center" timestamp="1594369741596">
+    <state width="1867" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
+    <state width="1867" height="237" key="GridCell.Tab.0.center" timestamp="1594635094307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="213" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594369741596" />
-    <state width="1867" height="213" key="GridCell.Tab.0.left" timestamp="1594369741596">
+    <state width="1867" height="237" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
+    <state width="1867" height="237" key="GridCell.Tab.0.left" timestamp="1594635094307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="213" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594369741596" />
-    <state width="1867" height="213" key="GridCell.Tab.0.right" timestamp="1594369741596">
+    <state width="1867" height="237" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
+    <state width="1867" height="237" key="GridCell.Tab.0.right" timestamp="1594635094307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="213" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594369741596" />
+    <state width="1867" height="237" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
     <state x="344" y="78" key="SettingsEditor" timestamp="1591842748975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -258,7 +260,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Check_Host$check_update.coverage" NAME="check_update Coverage Results" MODIFIED="1594363489291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Check_Host$zza.coverage" NAME="zza Coverage Results" MODIFIED="1594635094301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Check_Host$check_update.coverage" NAME="check_update Coverage Results" MODIFIED="1594634256715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Check_Host$zzz.coverage" NAME="zzz Coverage Results" MODIFIED="1594631510922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Check_Host$check.coverage" NAME="check Coverage Results" MODIFIED="1592797041319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

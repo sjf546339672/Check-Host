@@ -228,11 +228,42 @@ class UyunCheck(object):
             # alert_relate(parentid, childid)  # 创建的新告警id作为父 传进来的告警id子
 
 
+    def check_ipmi1(res_id):
+        """检查主机是否上电"""
+        global get_ipmi_result
+        get_ipmi_result = ""
+        url = "store/openapi/v2/datapoints/query_last?"
+        m = "ipmi.chassis.power.status"
+        data = {
+            'apikey': apikey,
+            'tag': 'object: {}'.format(res_id)
+        }
+        request_data = urlencode(data)
+        whole_url = base_url + url + request_data
+        headers = {'apikey': apikey, 'Content-Type': 'application/json',
+                   'Cache-Control': 'no-cache'}
+        try:
+            response = requests.get(url=whole_url, headers=headers,
+                                    verify=False)
+            print(response.status_code)
+            print(response.json())
+            for d in response.json():
+                if d['metric'] == m:
+                    if str(d['value']) == "1.0":
+                        get_ipmi_result = "true"
+                    elif str(d['value']) == "0.0":
+                        get_ipmi_result = "false"
+        except Exception as e:
+            get_ipmi_result = "采控代理失联"
+            print(e)
+        return get_ipmi_result
+
+
 def main():
     # alert_id = "2c07d6b7127e47769bd4fcd2f6abcdde"
     alert_id = "5ef0209ad5de2de2e8a10d6e"
     # res_id = "5ecb29c82350a90cacbbcd71"
-    res_id = "5ef014ad2350a92d2430a302"
+    res_id = "5ef01dc20381fd37821100bc"
     uyun = UyunCheck(alert_id, res_id)
     uyun.create_alert()  # 创建告警
     uyun.get_alert_number(alert_id)  # 获取告警数量
