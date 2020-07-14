@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ba2a4eea-9e45-4820-a4e8-73986953a205" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check.py" beforeDir="false" afterPath="$PROJECT_DIR$/check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/check_update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zza.py" beforeDir="false" afterPath="$PROJECT_DIR$/zza.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zzz.py" beforeDir="false" afterPath="$PROJECT_DIR$/zzz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/文档/~$ert-openAPI (1).docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../devcenter-project-template" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -216,6 +216,7 @@
       <workItem from="1594349608496" duration="11828000" />
       <workItem from="1594370309478" duration="3337000" />
       <workItem from="1594602057560" duration="27667000" />
+      <workItem from="1594687169269" duration="16225000" />
     </task>
     <servers />
   </component>
@@ -223,26 +224,30 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="687" y="216" key="FileChooserDialogImpl" timestamp="1594370362049">
+    <state x="491" y="11" key="CommitChangelistDialog2" timestamp="1594687947526">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="687" y="216" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594370362049" />
-    <state width="1867" height="237" key="GridCell.Tab.0.bottom" timestamp="1594635094307">
+    <state x="491" y="11" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1594687947526" />
+    <state x="687" y="216" key="FileChooserDialogImpl" timestamp="1594707496005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
-    <state width="1867" height="237" key="GridCell.Tab.0.center" timestamp="1594635094307">
+    <state x="687" y="216" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594707496005" />
+    <state width="1867" height="237" key="GridCell.Tab.0.bottom" timestamp="1594720574405">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="237" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
-    <state width="1867" height="237" key="GridCell.Tab.0.left" timestamp="1594635094307">
+    <state width="1867" height="237" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594720574405" />
+    <state width="1867" height="237" key="GridCell.Tab.0.center" timestamp="1594720574404">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="237" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
-    <state width="1867" height="237" key="GridCell.Tab.0.right" timestamp="1594635094307">
+    <state width="1867" height="237" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594720574404" />
+    <state width="1867" height="237" key="GridCell.Tab.0.left" timestamp="1594720574404">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="237" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594635094307" />
+    <state width="1867" height="237" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594720574404" />
+    <state width="1867" height="237" key="GridCell.Tab.0.right" timestamp="1594720574405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1867" height="237" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594720574405" />
     <state x="344" y="78" key="SettingsEditor" timestamp="1591842748975">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -260,7 +265,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Check_Host$zza.coverage" NAME="zza Coverage Results" MODIFIED="1594635094301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Check_Host$zza.coverage" NAME="zza Coverage Results" MODIFIED="1594720574395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Check_Host$check_update.coverage" NAME="check_update Coverage Results" MODIFIED="1594634256715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Check_Host$zzz.coverage" NAME="zzz Coverage Results" MODIFIED="1594631510922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Check_Host$check.coverage" NAME="check Coverage Results" MODIFIED="1592797041319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
